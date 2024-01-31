@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- css -->
+<style>
+*{
+    background-color: aquamarine;
+}
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+.geo-btn{
+    
+    font-weight: bolder;
+    cursor: pointer;
+    font-size: 20px;
+    width: 250px;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 20px; 
+    background-color: rgb(238, 238, 228);
+
+}
+.geo-btn:active{
+    background-color: black;
+    color: yellow;
+}
+
+
+
+.showDetails{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+</style>
+<!-- html -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Location</title>
+</head>
+<body>
+    <div class="main">
+        <h1 class="hedding">User Location with geoLocation Api</h1>
+        <button class="geo-btn">Show user location</button>
+        <p class="showDetails">User location details</p>
+    </div>
+    <!-- javascript -->
+    <script>
+
+       const showDetails = document.querySelector(".showDetails")
+
+        document.querySelector(".geo-btn").addEventListener('click',()=>{
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition((location)=>{
+                //  console.log(location)
+                const {latitude , longitude } = location.coords
+                showDetails.textContent = `The latitude ${latitude} & longitude ${longitude}`
+                },(error)=>{
+                   console.log(error.message)
+                })
+            }
+        })
+    </script>
+</body>
+</html>
